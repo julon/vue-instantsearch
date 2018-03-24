@@ -107,7 +107,6 @@ export default {
     }
 
     this.searchStore.start();
-    this.searchStore.refresh();
   },
 
   destroyed() {
