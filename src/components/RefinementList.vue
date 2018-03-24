@@ -58,7 +58,9 @@ export default {
     };
   },
   created() {
+    this.searchStore.stop();
     this.searchStore.addFacet(this.attributeName, this.operator);
+    this.searchStore.start();
   },
   destroyed() {
     this.searchStore.stop();
