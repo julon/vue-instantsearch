@@ -28,14 +28,18 @@ export default {
         this.searchStore.stop();
         this.searchStore.query = value;
         this.$emit('query', value);
-
-        // We here ensure we give the time to listeners to alter the store's state
-        // without triggering in between ghost queries.
-        this.$nextTick(function() {
-          this.searchStore.start();
-          this.searchStore.refresh();
-        });
+        this.searchStore.start();
       },
+    },
+  },
+  watch: {
+    // whenever input search value changes
+    query() {
+      // We here ensure we give the time to listeners to alter the store's state
+      // without triggering in between ghost queries.
+      this.$nextTick(() => {
+        this.searchStore.refresh();
+      });
     },
   },
 };
